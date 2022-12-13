@@ -11,9 +11,9 @@ namespace StringCalculator
         public static int Add(string debut)
         {
             var parties = debut.Split(',');
-            var firstInt = int.Parse(parties.First());
-            var secondInt = int.Parse(parties.Last());
-            return firstInt + secondInt;
+            var first = int.Parse(parties.First());
+            var second = int.Parse(parties.Last());
+            return first + second;
         }
     }
 }
