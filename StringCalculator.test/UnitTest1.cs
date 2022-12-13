@@ -20,14 +20,12 @@ namespace StringCalculator.test
             Assert.Equal(x + y, result);
         }
 
-
-/*
         [Theory(DisplayName = "ETANT DONNE une chaine \"x,y,z\" " +
-                              "QUAND on appelle Add " +
-                              "ALORS on a somme de plusieurs nombres")]
+                                      "QUAND on appelle Add " +
+                                      "ALORS on a somme de plusieurs nombres")]
 
         [InlineData(1, 2, 3)]
-      ""  public void TestPlusDeDeuxNombres(int x, int y, int z)
+        public void TestPlusDeDeuxNombres(int x, int y, int z) 
         {
             // ETANT n nombres "1, 2, 3"
             var debut = $"{x}, {y}, {z}";
@@ -35,7 +33,7 @@ namespace StringCalculator.test
             var result = AddString.Add(debut);
             // ALORS on a somme de plusieurs nombres
             Assert.Equal(x + y + z, result);
-        }*/
+        }
 
 
         [Fact]
@@ -71,6 +69,28 @@ namespace StringCalculator.test
 
             Assert.Equal(-1, exception.nombreFautif);
             Assert.Equal(-1, exception.position);
+        }
+
+        [Fact]
+        public void NombresSuperieurs()
+        {
+            // ETANT DONNE une liste de nombres de la forme "1,2,..."comportant un nombre supérieur à 1000
+
+            var nombres = new int[] { 1001, 2, 3 };
+            var debut = string.Join(',', nombres);
+
+            // QUAND on appelle Add
+
+            var resultAvecNombresSuperieurs = AddString.Add(debut);
+
+            // ALORS le résultat est le même que pour une entrée n'en ayant pas
+
+            var nombresSanNombresSuperieur = nombres.Where(nombres => nombres <= 1000);
+            var entréeSansGrandNombres = string.Join(',', nombresSanNombresSuperieur);
+            var résultatSansNombresSuperieurs = AddString.Add(entréeSansGrandNombres);
+
+            Assert.Equal(résultatSansNombresSuperieurs, resultAvecNombresSuperieurs);
+
         }
     }
 }

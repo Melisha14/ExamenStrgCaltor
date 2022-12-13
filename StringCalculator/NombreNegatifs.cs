@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringCalculator
 {
-    public class NombreNegatifs: Exception
+    public class NombreNegatifs : Exception
     {
         internal NombreNegatifs(int nombreFautif, int position)
         {
