@@ -53,5 +53,15 @@ namespace StringCalculator.test
 
             Assert.Equal(resultSansSautDeLigne, resultAvecSautDeLigne);
         }
+
+        [Fact]
+
+        public void TestNombresNegatifs()
+        {
+            // ETANT donné
+            // QUAND
+            // ALORS
+        }
     }
+
 }
