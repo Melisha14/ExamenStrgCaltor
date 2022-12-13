@@ -1,4 +1,6 @@
+Ôªøusing System;
 using System.Net.Security;
+using static StringCalculator.AddString;
 
 namespace StringCalculator.test
 {
@@ -10,10 +12,10 @@ namespace StringCalculator.test
         [InlineData(1, 2)]
         public void TestAjouter(int x, int y)
         {
-            // ETANT une chaÓne "1, 2"
+            // ETANT une cha√Æne "1, 2"
             var debut = $"{x}, {y}";
             // QUAND on appelle add
-            var result = AddString.Add(debut);
+            var result = Add(debut);
             // ALORS on a x+y
             Assert.Equal(x + y, result);
         }
@@ -42,26 +44,33 @@ namespace StringCalculator.test
 
             // ETANT DONNE une liste de nombres de la forme "1,2,..."comportant un saut de ligne
             var debut = string.Join(',', new int[] { 1, 2, 3 });
-            var entrÈeAvecSautDeLigne = AddString.Add(debut);
+            var entr√©eAvecSautDeLigne = Add(debut);
 
             // QUAND on appelle Add
-            var resultAvecSautDeLigne = AddString.Add(debut);
+            var resultAvecSautDeLigne = Add(debut);
 
-            // ALORS le rÈsultat est le mÍme que pour un debut n'en ayant pas
+            // ALORS le r√©sultat est le m√™me que pour un debut n'en ayant pas
 
-            var resultSansSautDeLigne = AddString.Add(debut);
+            var resultSansSautDeLigne = Add(debut);
 
             Assert.Equal(resultSansSautDeLigne, resultAvecSautDeLigne);
         }
 
         [Fact]
 
-        public void TestNombresNegatifs()
+        public void TestNombreNegatifs()
         {
-            // ETANT donnÈ
-            // QUAND
-            // ALORS
+            // ETANT DONNE une liste de nombres de la forme "1,2,..."comportant un nombre n√©gatif
+            var debut = string.Join(',', new int[] { -1, 2, 3 });
+
+            // QUAND on appelle Add
+            void Act() => AddString.Add(debut);
+
+            // ALORS une exception est lanc√©e, contenant le nombre et sa position
+            var exception = Assert.Throws<NombreNegatifs>(Act);
+
+            Assert.Equal(-1, exception.nombreFautif);
+            Assert.Equal(-1, exception.position);
         }
     }
-
 }
